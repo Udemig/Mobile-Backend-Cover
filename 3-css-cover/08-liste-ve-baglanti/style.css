@@ -1,0 +1,55 @@
+/* DENE: .kare listesinde list-style-type'ı circle, decimal ve none yap */
+
+body {
+  font-family: Arial, sans-serif;
+  padding: 24px;
+}
+
+/* Menü aslında bir liste: madde işaretini kaldır, yan yana diz */
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 12px 20px;
+  display: flex;
+  gap: 24px;
+  background: #0f172a;
+  border-radius: 10px;
+}
+
+.menu a {
+  color: #e2e8f0;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  color: #f97316;
+}
+
+/* list-style-type: işaret türü */
+.kare {
+  list-style-type: square;
+  color: #0f766e;
+}
+
+ol {
+  list-style-type: upper-roman;
+}
+
+/* Bağlantı durumları: sıra önemli (LVHA) */
+.link {
+  color: tomato;
+  text-decoration: none;
+}
+
+.link:visited {
+  color: purple;
+}
+
+.link:hover {
+  color: navy;
+  text-decoration: underline;
+}
+
+.link:active {
+  color: red;
+}

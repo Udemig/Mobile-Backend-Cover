@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Tablolar</h1>
+
+    <table border="3">
+      <caption>
+        Ders Programı
+      </caption>
+
+      <tr>
+        <th>Gün</th>
+        <th>Ders</th>
+      </tr>
+
+      <tr>
+        <td>Pazartesi</td>
+        <td>HTML</td>
+      </tr>
+
+      <tr>
+        <td>Çarşamba</td>
+        <td>CSS</td>
+      </tr>
+    </table>
+    <br />
+    <br />
+
+    <!-- 2) thead, tbody, tfoot -->
+    <table border="3">
+      <caption>
+        Sipariş
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Ürün</th>
+          <th scope="col">Adet</th>
+          <th scope="col">Fiyat</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th scope="row">Latte</th>
+          <td>2</td>
+          <td>180 TL</td>
+        </tr>
+        <tr>
+          <th scope="row">Mocha</th>
+          <td>1</td>
+          <td>95 TL</td>
+        </tr>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <th scope="row" colspan="2">Toplam</th>
+          <td>275 TL</td>
+        </tr>
+      </tfoot>
+    </table>
+    <br />
+    <br />
+
+    <!-- colspan ve rowspan -->
+    <table border="3">
+      <tr>
+        <th colspan="2">Hafta içi</th>
+        <th>Hafta sonu</th>
+      </tr>
+      <tr>
+        <td>Pzt</td>
+        <td>Sali</td>
+        <td rowspan="2">Tatil</td>
+      </tr>
+      <tr>
+        <td>Çar</td>
+        <td>Per</td>
+      </tr>
+    </table>
+  </body>
+</html>

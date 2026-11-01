@@ -1,0 +1,60 @@
+/* DENE: box-shadow'un ilk iki sayısını (x, y) ve üçüncüsünü (blur) değiştir */
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
+  padding: 24px;
+}
+
+.sira {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.kart {
+  background: white;
+  padding: 28px 12px;
+  text-align: center;
+}
+
+/* border: kalınlık stil renk */
+.duz {
+  border: 2px solid #f97316;
+}
+
+/* border-radius: köşe yuvarlama */
+.yuvarlak {
+  border: 2px solid #38bdf8;
+  border-radius: 16px;
+}
+
+/* box-shadow: x y blur renk */
+.golge {
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.6);
+}
+
+/* outline kutu boyutunu değiştirmez; odak halkası için kullanılır */
+.cizgili {
+  border: 3px solid black;
+  outline: 3px dashed #ec4899;
+  outline-offset: 10px;
+  margin-top: 30px;
+}
+
+/* 50% yuvarlama = daire */
+.avatar {
+  width: 80px;
+  height: 80px;
+  margin-top: 24px;
+  border-radius: 50%;
+  background: #0ea5e9;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+}

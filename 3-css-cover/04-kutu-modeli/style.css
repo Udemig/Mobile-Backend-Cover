@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
+.kutu {
+  background: #fed7aa;
+  /* genişlik */
+  width: 50%;
+  /* içerik boşluğu */
+  padding: 1.1rem;
+  /* çerçeve */
+  border: 15px groove orange;
+  /* dış boşluk */
+  margin: 50px;
+}
+
+.kutu-1 {
+  margin-bottom: 100px;
+}
+
+.kutu-2 {
+  margin-top: 200px;
+}

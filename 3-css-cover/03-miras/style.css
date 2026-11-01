@@ -1,0 +1,17 @@
+/* miras: body'e verilen bu özellikler tüm çocuklarına geçer */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ÖNEM: element (1) < class (10) < ID (100) */
+p {
+  color: gray;
+}
+
+.not {
+  color: royalblue;
+}
+
+#onemli {
+  color: crimson;
+}

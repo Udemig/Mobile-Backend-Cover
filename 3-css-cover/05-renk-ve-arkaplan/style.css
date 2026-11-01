@@ -1,0 +1,81 @@
+/* DENE: .bant içindeki iki rengi ve 135deg açısını değiştir */
+
+body {
+  font-family: Arial, sans-serif;
+  padding: 24px;
+}
+
+/* color = yazı rengi, background-color = zemin rengi */
+.baslik {
+  color: white;
+  background-color: #0f172a;
+  padding: 16px 20px;
+  border-radius: 8px;
+}
+
+/* Dört renk formatı */
+.renkler {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.r {
+  flex: 1;
+  color: white;
+  padding: 24px 12px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.isim {
+  background-color: tomato;
+}
+.hex {
+  background-color: #38bdf8;
+  color: #0f172a;
+}
+.rgb {
+  background-color: rgb(34, 197, 94);
+}
+.hsl {
+  background-color: hsl(280, 70%, 55%);
+}
+
+/* Gradyan: iki renk arasında geçiş */
+.bant {
+  background: linear-gradient(135deg, #f97316, #ec4899);
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 30px;
+  border-radius: 8px;
+}
+
+/* Arka plan resmi: background-image, size, position, repeat */
+.foto {
+  margin-top: 20px;
+  height: 300px;
+  border-radius: 8px;
+  /* gerçek bir resim için: url("kapak.jpg") */
+  background-image: url("kapak.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* rgba: son sayı saydamlık (0 = tam saydam, 1 = opak) */
+.perde {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px 16px;
+  border-radius: 0 0 8px 8px;
+}
+
+/* opacity bütün elemanı (yazıyı da) soluklaştırır */
+.soluk {
+  opacity: 0.4;
+}

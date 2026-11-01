@@ -1,0 +1,48 @@
+/* DENE: .govde'de line-height'ı 1'e çek, sonra 2'ye çıkar. Ne değişti? */
+
+body {
+  font-family: Georgia, serif;
+  color: #334155;
+  padding: 24px;
+  max-width: 640px;
+}
+
+/* Başlık ortada, aralıklı ve büyük harfli */
+.baslik {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #0f172a;
+}
+
+/* font-family listesi: ilk yazı tipi yoksa sıradakine geçer */
+.govde {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.kalin {
+  font-weight: 700;
+}
+
+.italik {
+  font-style: italic;
+}
+
+.buyuk-harf {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.cizgili {
+  text-decoration: line-through;
+  text-decoration-color: tomato;
+  text-underline-offset: 10px;
+}
+
+.golgeli {
+  font-size: 28px;
+  font-weight: bold;
+  text-shadow: 2px 2px 0 #fdba74;
+}

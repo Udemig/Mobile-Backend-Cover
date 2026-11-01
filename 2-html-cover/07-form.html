@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Kafe Rezervasyon</h1>
+
+    <form action="" method="get">
+      <p>
+        <label for="ad">Ad Soyad</label><br />
+        <input type="text" id="ad" name="ad" required minlength="3" autofocus />
+      </p>
+
+      <p>
+        <label for="eposta">E-posta</label><br />
+        <input
+          type="email"
+          id="eposta"
+          name="eposta"
+          required
+          placeholder="ornek@site.com"
+          autocomplete="email"
+        />
+      </p>
+
+      <p>
+        <label for="sifre">Şifre</label><br />
+        <input type="password" id="sifre" name="sifre" minlength="8" maxlength="20" />
+      </p>
+
+      <p>
+        <label for="tel">Telefon</label><br />
+        <input type="tel" id="tel" name="tel" pattern="[0-9]{10}" placeholder="5551112233" />
+      </p>
+
+      <p>
+        <label for="kisi">Kişi sayısı</label><br />
+        <input type="number" id="kisi" name="kisi" min="1" max="10" value="2" readonly />
+      </p>
+
+      <p>
+        <label for="tarih">Tarih</label><br />
+        <input type="date" id="tarih" name="tarih" />
+      </p>
+
+      <!-- radio -->
+      <fieldset>
+        <legend>MASA</legend>
+        <label> <input type="radio" name="masa" value="ic" /> İç Mekan </label>
+        <label> <input type="radio" name="masa" value="bahce" /> Bahçe </label>
+        <label> <input type="radio" name="masa" value="teras" /> Teras </label>
+      </fieldset>
+
+      <!-- çoklu seçim -->
+      <fieldset>
+        <legend>İstekler</legend>
+        <label> <input type="checkbox" name="istek" value="dogum-gunu" /> Doğum günü </label>
+        <label>
+          <input type="checkbox" name="istek" value="mama-sandalyesi" /> Mama sandalyesi
+        </label>
+      </fieldset>
+
+      <!-- select -->
+      <p>
+        <label for="sube">Şube</label><br />
+
+        <select name="sube" id="sube">
+          <option value="">Seçiniz</option>
+          <optgroup label="Avrupa Yakası">
+            <option value="besiktas">Beşiktaş</option>
+            <option value="sisli">Şişli</option>
+          </optgroup>
+
+          <optgroup label="Anadolu Yakası">
+            <option value="kadikoy">Kadıköy</option>
+          </optgroup>
+        </select>
+      </p>
+
+      <!-- textarea -->
+      <p>
+        <label for="not">Not</label><br />
+        <textarea name="not" id="not" disabled></textarea>
+      </p>
+
+      <button type="submit">Gönder</button>
+    </form>
+  </body>
+</html>

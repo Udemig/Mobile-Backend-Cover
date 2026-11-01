@@ -1,0 +1,42 @@
+/* 1. Element Seçici: tüm p etiketleri */
+p {
+  color: crimson;
+}
+
+/* 2. Class Seçici: nokta ile */
+.kart {
+  background: #cdd7e0;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+/* 3. ID seçici: sayfada tek eleman */
+#ust {
+  color: navy;
+}
+
+/* 4. Kombinatör: nav içerisindeki a */
+nav a {
+  color: orange;
+}
+
+/* 5. Durum seçici: fare üstündeyken */
+nav a:hover {
+  color: red;
+}
+
+/* 6. Gruplandırma */
+h1,
+h2,
+h3 {
+  background: aqua;
+}
+
+/* 7. Eleman Sırası */
+ul li:last-child {
+  background: red;
+}
+
+ul li:nth-child(even) {
+  background: orange;
+}
