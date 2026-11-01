@@ -1,0 +1,18 @@
+.galeri {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.galeri div {
+  background: #f97316;
+  color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.buyuk {
+  grid-column: span 2;
+}

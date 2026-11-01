@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Giriş Quiz</title>
+<style>
+  :root {
+    --bg: #f4f3ee;
+    --card: #fdfcf9;
+    --text: #1e293b;
+    --muted: #64748b;
+    --accent: #f97316;
+    --accent-dark: #ea580c;
+    --ok: #16a34a;
+    --ok-bg: #dcfce7;
+    --bad: #dc2626;
+    --bad-bg: #fee2e2;
+    --border: #e2e0d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 24px 16px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  header { margin-bottom: 24px; }
+  .eyebrow {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-dark);
+    font-weight: 700;
+  }
+  h1 { margin: 8px 0 4px; font-size: 30px; }
+  .progress-text { color: var(--muted); font-size: 14px; }
+  .progress {
+    height: 8px;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 12px 0 24px;
+  }
+  .progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  }
+  .question-number {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .question {
+    font-size: 19px;
+    font-weight: 700;
+    margin: 0 0 8px;
+  }
+  .code {
+    background: #1e1e26;
+    color: #e2e8f0;
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    white-space: pre;
+    overflow-x: auto;
+    margin: 12px 0;
+  }
+  .options { display: grid; gap: 10px; margin-top: 18px; }
+  .option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-size: 16px;
+    font-family: inherit;
+    padding: 14px 16px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--text);
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .option:hover:not(:disabled) { border-color: var(--accent); }
+  .option:disabled { cursor: default; }
+  .option.correct { border-color: var(--ok); background: var(--ok-bg); }
+  .option.wrong { border-color: var(--bad); background: var(--bad-bg); }
+  .feedback {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 15px;
+    min-height: 1px;
+  }
+  .feedback.ok { background: var(--ok-bg); color: #14532d; }
+  .feedback.bad { background: var(--bad-bg); color: #7f1d1d; }
+  .actions { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; gap: 12px; }
+  .btn {
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .btn:hover:not(:disabled) { background: var(--accent-dark); }
+  .btn:disabled { background: #cbd5e1; cursor: not-allowed; }
+  .btn.secondary { background: #334155; }
+  .btn.secondary:hover:not(:disabled) { background: #1e293b; }
+  .hidden { display: none; }
+  .result { text-align: center; }
+  .score {
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--accent-dark);
+    margin: 8px 0;
+  }
+  .result-msg { font-size: 18px; color: var(--muted); margin-bottom: 20px; }
+  .review { text-align: left; margin-top: 24px; }
+  .review-item {
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  .review-item.ok { background: var(--ok-bg); }
+  .review-item.bad { background: var(--bad-bg); }
+  @media (max-width: 480px) {
+    .card { padding: 20px; }
+    h1 { font-size: 24px; }
+    .question { font-size: 17px; }
+    .actions { flex-direction: column-reverse; align-items: stretch; }
+    .btn { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">CSS Giriş</div>
+    <h1>Bilgi Quiz'i</h1>
+    <div class="progress-text" id="progressText">Soru 1 / 10</div>
+    <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+  </header>
+
+  <main class="card" id="quizCard">
+    <div id="questionArea">
+      <div class="question-number" id="qNumber"></div>
+      <p class="question" id="qText"></p>
+      <div id="qCode"></div>
+      <div class="options" id="options"></div>
+      <div class="feedback hidden" id="feedback"></div>
+      <div class="actions">
+        <span></span>
+        <button class="btn" id="nextBtn" disabled>Sonraki</button>
+      </div>
+    </div>
+
+    <div id="resultArea" class="result hidden">
+      <div class="eyebrow">Sonuç</div>
+      <div class="score"><span id="scoreNum">0</span> / 10</div>
+      <div class="result-msg" id="resultMsg"></div>
+      <button class="btn secondary" id="restartBtn">Tekrar Dene</button>
+      <div class="review" id="review"></div>
+    </div>
+  </main>
+</div>
+
+<script>
+  const questions = [
+    {
+      q: "Harici bir .css dosyasını HTML'e bağlamak için hangi etiket kullanılır?",
+      code: null,
+      options: ["<script>", '<link rel="stylesheet">', '<style src="">', "<css>"],
+      answer: 1,
+      explain: '<link rel="stylesheet" href="style.css"> harici CSS dosyasını bağlar.'
+    },
+    {
+      q: "Aşağıdaki seçici hangi elemanları seçer?",
+      code: ".kart p { }",
+      options: [
+        "Sınıfı p olan tüm elemanları",
+        "kart sınıfına sahip elemanın içindeki tüm p etiketlerini",
+        "Hem .kart hem p olan elemanları",
+        "kart ID'sine sahip p etiketini"
+      ],
+      answer: 1,
+      explain: "Boşluk (soy) kombinatörü, kapsayıcı içindeki tüm p etiketlerini seçer."
+    },
+    {
+      q: "Aşağıdakilerden hangisinin özgüllük puanı en yüksektir?",
+      code: null,
+      options: ["p (element)", ".not (class)", "#ust (ID)", 'style="" (inline)'],
+      answer: 3,
+      explain: "Inline style 1000 puan; ID 100, class 10, element 1."
+    },
+    {
+      q: "Aşağıdakilerden hangisi miras alınan bir özelliktir?",
+      code: null,
+      options: ["margin", "background", "color", "border"],
+      answer: 2,
+      explain: "color miras alınır; margin, background ve border alınmaz."
+    },
+    {
+      q: "box-sizing: border-box; kullanıldığında width: 300px; ne anlama gelir?",
+      code: null,
+      options: [
+        "Yalnızca içeriğin genişliği 300px olur, padding ve border ayrıca eklenir",
+        "Padding ve border dahil toplam genişlik 300px olur",
+        "Sadece margin dahil edilir",
+        "Genişlik yüzde olarak yorumlanır"
+      ],
+      answer: 1,
+      explain: "border-box ile genişlik padding ve border dahil toplam genişliktir."
+    },
+    {
+      q: "Aşağıdaki yazımda alt kenar için hangi değer kullanılmıştır?",
+      code: "margin: 10px 20px 30px 40px;",
+      options: ["10px", "20px", "30px", "40px"],
+      answer: 2,
+      explain: "Saat yönü: üst 10px, sağ 20px, alt 30px, sol 40px."
+    },
+    {
+      q: "position: absolute olan bir elemanın referans noktası nedir?",
+      code: null,
+      options: [
+        "Pencerenin kenarları (her zaman)",
+        "Kendi normal konumu",
+        "En yakın konumlanmış (position verilmiş) ata eleman",
+        "Sayfanın en üstü (her zaman)"
+      ],
+      answer: 2,
+      explain: "absolute, en yakın konumlanmış atasına göre konumlanır."
+    },
+    {
+      q: "Flexbox'ta justify-content hangi eksende hizalama yapar?",
+      code: null,
+      options: ["Ana eksen", "Yan eksen", "Her iki eksen", "Eksen yoktur, yalnızca gap ile çalışır"],
+      answer: 0,
+      explain: "justify-content ana eksende, align-items yan eksende çalışır."
+    },
+    {
+      q: "Aşağıdaki Grid tanımlarından hangisi üç eşit sütun oluşturur?",
+      code: null,
+      options: [
+        "grid-template-columns: 3 3 3;",
+        "grid-template-columns: repeat(3, 1fr);",
+        "grid-column: span 3;",
+        "display: grid-3;"
+      ],
+      answer: 1,
+      explain: "repeat(3, 1fr) üç eşit sütunluk tanım verir."
+    },
+    {
+      q: "Aşağıdaki kodda hangi özellik geçişin süresini belirler?",
+      code: ".dugme {\n  background: #f97316;\n  transition: background 0.3s ease;\n}",
+      options: ["background", "ease", "0.3s", "transition"],
+      answer: 2,
+      explain: "0.3s süredir; ease hızlanma eğrisidir."
+    }
+  ];
+
+  let current = 0;
+  let score = 0;
+  let answered = false;
+  const userAnswers = [];
+
+  const el = id => document.getElementById(id);
+
+  function render() {
+    const q = questions[current];
+    answered = false;
+    el("progressText").textContent = `Soru ${current + 1} / ${questions.length}`;
+    el("progressBar").style.width = `${(current / questions.length) * 100}%`;
+    el("qNumber").textContent = `SORU ${current + 1}`;
+    el("qText").textContent = q.q;
+
+    const codeBox = el("qCode");
+    codeBox.innerHTML = "";
+    if (q.code) {
+      const pre = document.createElement("div");
+      pre.className = "code";
+      pre.textContent = q.code;
+      codeBox.appendChild(pre);
+    }
+
+    const opts = el("options");
+    opts.innerHTML = "";
+    q.options.forEach((text, i) => {
+      const btn = document.createElement("button");
+      btn.className = "option";
+      btn.textContent = `${String.fromCharCode(65 + i)}) ${text}`;
+      btn.addEventListener("click", () => choose(i));
+      opts.appendChild(btn);
+    });
+
+    el("feedback").className = "feedback hidden";
+    el("feedback").textContent = "";
+    el("nextBtn").disabled = true;
+    el("nextBtn").textContent = current === questions.length - 1 ? "Sonucu Gör" : "Sonraki";
+  }
+
+  function choose(i) {
+    if (answered) return;
+    answered = true;
+    const q = questions[current];
+    const buttons = document.querySelectorAll(".option");
+    buttons.forEach(b => b.disabled = true);
+
+    const correct = i === q.answer;
+    userAnswers.push({ selected: i, correct });
+    if (correct) score++;
+
+    buttons[q.answer].classList.add("correct");
+    if (!correct) buttons[i].classList.add("wrong");
+
+    const fb = el("feedback");
+    fb.className = "feedback " + (correct ? "ok" : "bad");
+    fb.textContent = (correct ? "Doğru! " : "Yanlış. ") + q.explain;
+
+    el("nextBtn").disabled = false;
+  }
+
+  el("nextBtn").addEventListener("click", () => {
+    current++;
+    if (current < questions.length) {
+      render();
+    } else {
+      showResult();
+    }
+  });
+
+  function showResult() {
+    el("questionArea").classList.add("hidden");
+    el("resultArea").classList.remove("hidden");
+    el("progressBar").style.width = "100%";
+    el("progressText").textContent = "Tamamlandı";
+    el("scoreNum").textContent = score;
+
+    let msg;
+    if (score === 10) msg = "Mükemmel! CSS temellerine hakimsin.";
+    else if (score >= 7) msg = "Çok iyi! Birkaç konuyu tekrar gözden geçir.";
+    else if (score >= 4) msg = "Fena değil. Seçiciler ve kutu modelini tekrar et.";
+    else msg = "Konuyu baştan gözden geçirmekte fayda var.";
+    el("resultMsg").textContent = msg;
+
+    const review = el("review");
+    review.innerHTML = "";
+    userAnswers.forEach((a, i) => {
+      const item = document.createElement("div");
+      item.className = "review-item " + (a.correct ? "ok" : "bad");
+      item.textContent = `${i + 1}. ${a.correct ? "Doğru" : "Yanlış"}`;
+      review.appendChild(item);
+    });
+  }
+
+  el("restartBtn").addEventListener("click", () => {
+    current = 0;
+    score = 0;
+    userAnswers.length = 0;
+    el("resultArea").classList.add("hidden");
+    el("questionArea").classList.remove("hidden");
+    el("review").innerHTML = "";
+    render();
+  });
+
+  render();
+</script>
+</body>
+</html>

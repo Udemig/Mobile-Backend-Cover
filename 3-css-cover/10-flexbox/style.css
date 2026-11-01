@@ -1,0 +1,20 @@
+.menu {
+  height: 200px;
+  border: 2px solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.menu a {
+  background: gray;
+  border: 3px solid black;
+  padding: 10px;
+  flex-grow: 1;
+}
+
+.menu a:first-child {
+  flex-shrink: 1;
+}

@@ -1,0 +1,85 @@
+/* DENE: .dugme içindeki transition süresini 0.3s'den 1.5s'ye çıkar */
+
+body {
+  font-family: Arial, sans-serif;
+  padding: 24px;
+}
+
+/* transition: özellik süre hızlanma-eğrisi */
+.dugme {
+  background: #f97316;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.dugme:hover {
+  background: #ec4899;
+  transform: scale(1.08);
+}
+
+.kartlar {
+  display: flex;
+  gap: 16px;
+  margin: 28px 0;
+}
+
+/* transform: kaydır, büyüt, döndür */
+.kart {
+  flex: 1;
+  background: white;
+  padding: 28px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s;
+}
+
+.kart:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.2);
+}
+
+/* @keyframes: kendi animasyonunu tanımla */
+@keyframes nabiz {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.nabiz {
+  width: 200px;
+  padding: 16px;
+  text-align: center;
+  background: #0ea5e9;
+  color: white;
+  border-radius: 8px;
+  animation: nabiz 0.7s ease-in-out infinite alternate;
+}
+
+@keyframes don {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.donen {
+  width: 48px;
+  height: 48px;
+  margin-top: 24px;
+  border: 5px solid #e2e8f0;
+  border-top-color: #f97316;
+  border-radius: 50%;
+  animation: don 0.9s linear infinite;
+}
