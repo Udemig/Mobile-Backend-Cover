@@ -1,0 +1,19 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+.kirmizi {
+  color: crimson;
+}
+
+.bitti {
+  text-decoration: line-through;
+  color: gray;
+}
+
+#gorev-listesi li {
+  cursor: pointer;
+}

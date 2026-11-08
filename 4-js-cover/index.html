@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Tekrar</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ADIM 1-2: seçme ve değiştirme -->
+    <h1 id="baslik">Merhaba</h1>
+    <ul class="liste">
+      <li class="madde">Elma</li>
+      <li class="madde">Armut</li>
+      <li class="madde">Muz</li>
+    </ul>
+
+    <!-- ADIM 3: event (ilk button bu olmalı) -->
+    <button id="sayac-btn">Tıkla</button>
+
+    <hr />
+
+    <!-- ADIM 4-5: form ve görev listesi -->
+    <h2>Görev listesi</h2>
+    <form id="gorev-form">
+      <input id="gorev-input" type="text" placeholder="Yeni görev" />
+      <button type="submit">Ekle</button>
+    </form>
+    <ul id="gorev-listesi"></ul>
+
+    <!-- ADIM 6: asenkron + DOM -->
+    <h2>Kullanıcılar (API)</h2>
+    <ul id="kullanici-listesi"></ul>
+
+    <script src="07-dom.js"></script>
+  </body>
+</html>
